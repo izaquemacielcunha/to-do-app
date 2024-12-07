@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+		xmlns:th="http://www.thymeleaf.org"	
+>
+
+<head th:replace="~{fragments/head :: head}">
+
+</head>
+<body>
+
+	<div th:replace="~{fragments/nav-bar :: nav-bar}"></div>
+	
+	<div class="container">
+		<div class="row">
+			<h1>List of tasks</h1>
+		</div>
+		
+		<table class="table table-striped table-hover table-bordered">
+			<thead class="table-dark">
+				<th>#</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Status</th>
+				<th>Created on</th>
+				<th>Actions</th>
+			</thead>
+			<tbody>
+				<tr th:each="task:${tasks}">
+					<td th:text="${task.id}"></td>
+					<td th:text="${task.name}"></td>
+					<td th:text="${task.description}"></td>
+					<td th:text="${task.status}"></td>
+					<td th:text="${#temporals.format(task.createdOn, 'dd/MM/yyyy')}"></td>
+					<td>
+					<a type="button" class="btn btn-primary" th:href="@{/admin/posts/{postId}/edit(postId=${task.id})}">Edit</a>
+					<a type="button" class="btn btn-danger" th:href="@{/admin/posts/{postId}/delete(postId=${task.id})}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	
+</body>
+</html>
