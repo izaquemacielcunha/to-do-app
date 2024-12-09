@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+		xmlns:th="http://www.thymeleaf.org"	
+>
+
+<head th:replace="~{fragments/head :: head}">
+
+</head>
+<body>
+
+	<div th:replace="~{fragments/nav-bar :: nav-bar}"></div>
+
+	<div class="container my-5">
+		<h1 class="display-5 fw-normal">Edit task</h1>
+		<form role="form" method="post" action="#" th:action="@{/task/update/{taskId}(taskId=${task.id})}" th:object="${task}">
+			<div class="row">
+				<div class="col">
+					<div class="mb-3">
+						<label>Name</label>
+	 	 				<input type="text" class="form-control" th:field="*{name}" id="name">
+					</div>
+					<p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
+				</div>
+				<div class="col">
+					<div class="mb-3">
+						<label>Description</label>
+		 	 			<input type="text" class="form-control" th:field="*{description}" id="description">
+					</div>
+				</div>
+				<div class="col">
+					<div class="mb-3">
+						<label>Status</label>
+						<select class="form-select" th:field="*{status.id}" id="status">
+							  <option th:each="statusOption:${statusOptions}" th:text="${statusOption.name}" th:value="${statusOption.id}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto">
+    			<button type="submit" class="btn btn-primary btn-dark">Submit</button>
+		  	</div>
+		</form>
+	</div>
+	
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
