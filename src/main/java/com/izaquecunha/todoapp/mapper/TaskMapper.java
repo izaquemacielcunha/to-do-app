@@ -10,7 +10,7 @@ public class TaskMapper {
 				.id(taskDto.getId())
 				.name(taskDto.getName())
 				.description(taskDto.getDescription())
-				.status(taskDto.getStatus())
+				.status(StatusMapper.mapToStatus(taskDto.getStatus()))
 				.createdOn(taskDto.getCreatedOn())
 				.build();
 		return task;
@@ -21,7 +21,7 @@ public class TaskMapper {
 				.id(task.getId())
 				.name(task.getName())
 				.description(task.getDescription())
-				.status(task.getStatus())
+				.status(StatusMapper.mapToStatusDto(task.getStatus()))
 				.createdOn(task.getCreatedOn())
 				.build();
 		return taskDto;

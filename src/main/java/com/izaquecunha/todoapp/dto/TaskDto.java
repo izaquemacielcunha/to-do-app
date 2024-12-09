@@ -13,7 +13,7 @@ public class TaskDto {
 	@NotEmpty(message = "This field is required")
 	private String name;
 	private String description;
-	private String status;
+	private StatusDto status;
 	private LocalDateTime createdOn;
 
 }// end of class
